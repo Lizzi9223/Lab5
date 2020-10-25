@@ -6,22 +6,40 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Vehicle
+    interface VehicleDoes
+    {
+        void Sailing(bool a);
+    }
+    abstract class Vehicle : VehicleDoes
     {
         public string captain { get; set; }
         public sbyte speed { get; set; } 
-        public void Display ()
+        public virtual void Display ()
         {
             Console.WriteLine($"This vehicle captain's name is {captain}, speed is {speed} km/h.");
         }
+        public bool sailing;
+        public virtual void Sailing(bool a)
+        {
+            if (a) Console.WriteLine("Сейчас судно находится в плавании.");
+            else Console.WriteLine("Сейчас судно НЕ находится в плавании.");
+        }
     }
-
     class Ship : Vehicle
     {
         public bool battle_ship;
         public int length;
+        public override void Display()
+        {
+            Console.WriteLine($"Is this ship battle? {battle_ship}. Its length is {length}m.");
+        }
+        public override void Sailing(bool a)
+        {
+            if (a) Console.WriteLine("В пути.");
+            else Console.WriteLine("Дома.");
+        }
     }
-    class Steamer : Vehicle
+    sealed class Steamer : Vehicle
     {
         public int year_of_creation;
         class Steam_engine
