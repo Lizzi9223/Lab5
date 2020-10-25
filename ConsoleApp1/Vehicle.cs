@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
+    interface Info
+    {
+        bool WannaBuy();
+    }
     interface VehicleDoes
     {
         void Sailing(bool a);
     }
     abstract class Vehicle : VehicleDoes
     {
+        public abstract bool WannaBuy();
         public string captain { get; set; }
         public sbyte speed { get; set; } 
         public virtual void Display ()
@@ -25,7 +30,7 @@ namespace ConsoleApp1
             else Console.WriteLine("Сейчас судно НЕ находится в плавании.");
         }
     }
-    class Ship : Vehicle
+    class Ship : Vehicle, Info
     {
         public bool battle_ship;
         public int length;
@@ -38,6 +43,14 @@ namespace ConsoleApp1
             if (a) Console.WriteLine("В пути.");
             else Console.WriteLine("Дома.");
         }
+        bool Info.WannaBuy()
+        {
+            return true;
+        }
+        public override bool WannaBuy()
+        {
+            return false;
+        }
     }
     sealed class Steamer : Vehicle
     {
@@ -45,6 +58,10 @@ namespace ConsoleApp1
         class Steam_engine
         {
             public string type;
+        }
+        public override bool WannaBuy()
+        {
+            return false;
         }
     }
     class Boat : Vehicle
@@ -68,6 +85,10 @@ namespace ConsoleApp1
         public override int GetHashCode()
         {
             return engine.GetHashCode();
+        }
+        public override bool WannaBuy()
+        {
+            return false;
         }
     }
     class Sailboat : Ship
