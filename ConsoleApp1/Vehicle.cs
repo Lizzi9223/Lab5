@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace ConsoleApp1
 {
@@ -28,12 +29,17 @@ namespace ConsoleApp1
         {
             if (a) Console.WriteLine("Сейчас судно находится в плавании.");
             else Console.WriteLine("Сейчас судно НЕ находится в плавании.");
-        }
+        }                
     }
     class Ship : Vehicle, Info
     {
         public bool battle_ship;
         public int length;
+        public Ship(bool a = false, int b = 0)
+        {
+            battle_ship = a;
+            length = b;
+        }
         public override void Display()
         {
             Console.WriteLine($"Is this ship battle? {battle_ship}. Its length is {length}m.");
@@ -50,6 +56,11 @@ namespace ConsoleApp1
         public override bool WannaBuy()
         {
             return false;
+        }        
+        public override string ToString()
+        {
+            return ($"Тип объекта = {this.GetType()}; Имя капитана = {captain}; Скорость судна = {speed}; Судно сейчас находится в плавании? {sailing}; " +
+                        $"\nЭто боевое судно? {battle_ship}; Длина судна = {length}м.");
         }
     }
     sealed class Steamer : Vehicle
@@ -63,15 +74,25 @@ namespace ConsoleApp1
         {
             return false;
         }
+        public override string ToString()
+        {
+            return ($"Тип объекта = {this.GetType()}; Имя капитана = {captain}; Скорость судна = {speed}; Судно сейчас находится в плавании? {sailing}; " +
+                        $"\nГод создания -  {year_of_creation}.");
+        }
     }
     class Boat : Vehicle
     {
         public bool engine;
         public byte capacity;
-
+        public Boat(bool a = false, byte b = 0)
+        {
+            engine = a;
+            capacity = b;
+        }
         public override string ToString()
         {
-           return ($"Эта лодка имеет двигатель? {engine}. Вместимоть это лодки равна {capacity} людей.");
+            return ($"Тип объекта = {this.GetType()}; Имя капитана = {captain}; Скорость судна = {speed}; Судно сейчас находится в плавании? {sailing}; " +
+                        $"Эта лодка имеет двигатель? {engine}. Вместимоть это лодки равна {capacity} людей.");
         }
         public override bool Equals(object obj)
         {
@@ -95,9 +116,19 @@ namespace ConsoleApp1
     {
         public string sail_color;
         public string sail_material;
+        public override string ToString()
+        {
+            return ($"Тип объекта = {this.GetType()}; Имя капитана = {captain}; Скорость судна = {speed}; Судно сейчас находится в плавании? {sailing}; " +
+                         $"\nЭто боевое судно? {battle_ship}; Длина судна = {length}м. Цвет парусов - {sail_color}; Материал парусов - {sail_material}.");
+        }
     }
     class Corvette : Ship
     {
         public string type;
+        public override string ToString()
+        {
+            return ($"Тип объекта = {this.GetType()}; Имя капитана = {captain}; Скорость судна = {speed}; Судно сейчас находится в плавании? {sailing}; " +
+                        $"\nЭто боевое судно? {battle_ship}; Длина судна = {length}м. Тип корвета - {type}.");
+        }
     }
 }

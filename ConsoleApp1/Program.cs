@@ -10,8 +10,8 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Ship a = new Ship();
-            Console.WriteLine(a.GetType());
+            Vehicle ship = new Ship(false, 76);
+            Vehicle boat = new Boat(b : 5);
         }
     }
 }
