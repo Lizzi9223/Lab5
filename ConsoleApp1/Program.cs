@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,7 +31,16 @@ namespace ConsoleApp1
             if (check == null) Console.WriteLine("boat нельзя привести к классу Ship\n");
             else Console.WriteLine("boat можно привести к классу Ship\n");
 
-
+           // var list = (steamer, boat, ship, sailboat, corvette);
+            Printer printer = new Printer();
+            ArrayList list = new ArrayList();
+            list.Add(steamer);
+            list.Add(boat);
+            list.Add(ship);
+            list.Add(sailboat);
+            list.Add(corvette);
+            for (var i = 0; i < list.Count; i++)
+                printer.IAmPrinting(list[i] as Vehicle);
         }
     }
 }

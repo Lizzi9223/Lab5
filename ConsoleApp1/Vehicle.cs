@@ -148,8 +148,10 @@ namespace ConsoleApp1
     {
         public void IAmPrinting (Vehicle obj)
         {
+            Console.WriteLine();
             Console.WriteLine(obj.GetType());
             Console.WriteLine(obj.ToString());
+            Console.WriteLine();
         }
     }
 }
