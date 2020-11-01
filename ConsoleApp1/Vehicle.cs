@@ -66,6 +66,10 @@ namespace ConsoleApp1
     sealed class Steamer : Vehicle
     {
         public int year_of_creation;
+        public Steamer (int a)
+        {
+            year_of_creation = a;
+        }
         class Steam_engine
         {
             public string type;
@@ -116,6 +120,11 @@ namespace ConsoleApp1
     {
         public string sail_color;
         public string sail_material;
+        public Sailboat(string a = "", string b = "")
+        {
+            sail_color = a;
+            sail_material = b;
+        }
         public override string ToString()
         {
             return ($"Тип объекта = {this.GetType()}; Имя капитана = {captain}; Скорость судна = {speed}; Судно сейчас находится в плавании? {sailing}; " +
@@ -125,10 +134,22 @@ namespace ConsoleApp1
     class Corvette : Ship
     {
         public string type;
+        public Corvette (string s)
+        {
+            type = s;
+        }
         public override string ToString()
         {
             return ($"Тип объекта = {this.GetType()}; Имя капитана = {captain}; Скорость судна = {speed}; Судно сейчас находится в плавании? {sailing}; " +
                         $"\nЭто боевое судно? {battle_ship}; Длина судна = {length}м. Тип корвета - {type}.");
+        }
+    }
+    class Printer
+    {
+        public void IAmPrinting (Vehicle obj)
+        {
+            Console.WriteLine(obj.GetType());
+            Console.WriteLine(obj.ToString());
         }
     }
 }
